@@ -1,9 +1,7 @@
 from qrCodeGenerator import generate_custom_qr
+from configurations import qr_code_to_url_mapping
 
 
 if __name__ == "__main__":
-    target_data = "https://onrender.com"
-
-    # We use a double backslash "\\" at the end so Python treats it as a literal character
-    # instead of escaping the closing quote block.
-    generate_custom_qr(target_data, target_dir="data/qr_codes", filename="custom_qr.png")
+    for qr_config in qr_code_to_url_mapping:
+        generate_custom_qr(qr_config['url'], target_dir="data/qr_codes", filename=qr_config['image'])
