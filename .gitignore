@@ -1,0 +1,10 @@
+# Ignore the entire data directory and all its contents
+data/
+
+# Ignore your specific QR code generator output folder
+var/opt/qr-code-generator/data/qr_codes/
+
+# Ignore Python environment folders and caches
+__pycache__/
+venv/
+env/
