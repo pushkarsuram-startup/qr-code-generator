@@ -8,3 +8,4 @@ var/opt/qr-code-generator/data/qr_codes/
 __pycache__/
 venv/
 env/
+documents/
