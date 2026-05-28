@@ -17,6 +17,13 @@ app.mount("/static-documents", StaticFiles(directory=os.path.join(BASE_DIR, "doc
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 
+# Home page endpoint - displays when no qr_id is provided
+@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    print("Welcome to Home page")
+    return "<h1>Welcome to Home page</h1>"
+
+
 # The {qr_id} parameter captures "hooks_law_document" automatically from the browser URL
 @app.get("/{qr_id}", response_class=HTMLResponse)
 def serve_mapped_pdf(request: Request, qr_id: str):
@@ -25,7 +32,6 @@ def serve_mapped_pdf(request: Request, qr_id: str):
         (item for item in qr_code_to_url_mapping if item['id'] == qr_id),
         None
     )
-
     # If the user types a random endpoint that doesn't exist, show a clean 404 error
     if not matched_config:
         raise HTTPException(status_code=404, detail="This document link does not exist.")
